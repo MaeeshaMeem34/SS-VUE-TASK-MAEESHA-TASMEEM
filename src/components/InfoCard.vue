@@ -55,21 +55,35 @@
 </template>
 
 <script>
+import { staffInfoService } from '@/services/staffInfoService';
+
 export default {
   name: "InfoCard",
-  data: () => ({
-    items: [
-      {
-        name: "meem",
-        age: "20",
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpclgdZQ3ZHBh6xTt4wlROP30NE_GY7MdVw&usqp=CAU",
-      },
-      {
-        name: "riyad",
-        age: "25",
-        src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpclgdZQ3ZHBh6xTt4wlROP30NE_GY7MdVw&usqp=CAU",
-      },
-    ],
-  }),
+  data: function () {
+    return{
+      loading: false,
+      staffs:[],
+      errorMessage: null
+    }
+  },
+  created: async function(){
+    try{
+      this.loading = true;
+      let response= await staffInfoService.getAllStaffs();
+      this.staffs = response.data;
+      this.loading = false;
+
+    }
+    catch(error){
+
+      this.errorMessage=error;
+      this.loading = false;
+    }
+    
+  },
+  methods: {
+  
+
+  }
 };
 </script>
