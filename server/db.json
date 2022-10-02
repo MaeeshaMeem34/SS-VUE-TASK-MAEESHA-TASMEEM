@@ -8,31 +8,11 @@
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpclgdZQ3ZHBh6xTt4wlROP30NE_GY7MdVw&usqp=CAU"
     },
     {
-      "id": "2",
-      "name": "riyad",
-      "mobile": "7128997",
-      "email": "xyz@gmail.com",
-      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpclgdZQ3ZHBh6xTt4wlROP30NE_GY7MdVw&usqp=CAU"
-    },
-    {
       "id": "3",
       "name": "Faria",
       "mobile": "7343897",
       "email": "faria@gmail.com",
       "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpclgdZQ3ZHBh6xTt4wlROP30NE_GY7MdVw&usqp=CAU"
-    },
-    {
-      "id": "4",
-      "name": "Tasnuva",
-      "mobile": "7123897",
-      "email": "tasnuva@gmail.com",
-      "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkpclgdZQ3ZHBh6xTt4wlROP30NE_GY7MdVw&usqp=CAU"
-    },
-    {
-      "name": "Jhon doe",
-      "mobile": "0198766",
-      "email": "jhon@gmail.com",
-      "id": "SYlKOPb"
     }
   ]
 }

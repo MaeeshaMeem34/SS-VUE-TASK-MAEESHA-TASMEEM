@@ -25,7 +25,7 @@ export class staffInfoService{
 
     static deleteStaff(staffId){
         let dataURL = `${this.serverURL}/staffs/${staffId}`;
-        return axios.put(dataURL);
+        return axios.delete(dataURL);
     }
 
 

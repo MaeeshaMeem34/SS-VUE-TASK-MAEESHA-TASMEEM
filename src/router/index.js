@@ -7,6 +7,7 @@ import AddStaff from '../views/AddStaff.vue'
 import EditStaff from '../views/EditStaff.vue'
 
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -34,13 +35,15 @@ const routes = [
     component: AddStaff
   },
   {
-    path: '/staffs/edit/:id',
+    path: '/staffs/edit/:staffId',
     name: 'editStaff',
   
     component: EditStaff
   },
  
 ]
+
+
 
 const router = new VueRouter({
   mode: 'history',

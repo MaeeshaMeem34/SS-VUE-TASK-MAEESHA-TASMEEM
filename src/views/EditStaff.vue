@@ -6,14 +6,14 @@
       ref="observer"
       v-slot="{ invalid }"
     >
-      <form @submit.prevent="submit">
+      <form @submit.prevent="UpdateSubmit">
         <validation-provider
           v-slot="{ errors }"
           name="Name"
           rules="required|max:10"
         >
           <v-text-field
-            v-model="name"
+            v-model="staff.name"
             :counter="10"
             :error-messages="errors"
             label="Name"
@@ -22,18 +22,18 @@
         </validation-provider>
         <validation-provider
           v-slot="{ errors }"
-          name="phoneNumber"
+          name="mobile"
           :rules="{
             required: true,
             digits: 7,
-            regex: '^(71|72|74|76|81|82|84|85|86|87|88|89)\\d{5}$'
+           
           }"
         >
           <v-text-field
-            v-model="phoneNumber"
+            v-model="staff.mobile"
             :counter="7"
             :error-messages="errors"
-            label="Phone Number"
+            label="Mobile"
             required
           ></v-text-field>
         </validation-provider>
@@ -43,14 +43,14 @@
           rules="required|email"
         >
           <v-text-field
-            v-model="email"
+            v-model="staff.email"
             :error-messages="errors"
             label="E-mail"
             required
           ></v-text-field>
         </validation-provider>
        
-        
+  
   
         <v-btn
           class="mr-4"
@@ -69,8 +69,10 @@
 
 
 <script>
+  
     import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
     import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import { staffInfoService } from '@/services/staffInfoService'
   
     setInteractionMode('eager')
   
@@ -100,20 +102,63 @@
     })
   
     export default {
+      
       components: {
         ValidationProvider,
         ValidationObserver,
       },
-      data: () => ({
-        name: '',
-        phoneNumber: '',
-        email: '',
-       
-      }),
+      name:"EditStaff",
+      data: function () {
+        //console.log("param is: ",this.$route.params)
+        return{
+        staffId: this.$route.params.staffId,
+        loading:false,
+        staff: {
+         
+          name: '',
+          mobile: '',
+          email: '',
+        },
+        errorMessage: null, 
+
+        }
+                           
+          }
+      ,
+      created: async function (){
+        try{
+          let response = await staffInfoService.getStaff(this.staffId);
+          console.log(response.data)
+          this.staff = response.data;
+          this.loading = false;
+      
+         
+
+        } catch(error){
+this.errorMessage = error;
+this.loading= false;
+        }
+
+      },
   
       methods: {
-        submit () {
-          this.$refs.observer.validate()
+      async  UpdateSubmit () {
+          this.$refs.observer.validate();
+          try{
+              let response= await staffInfoService.updateStaff(this.staff, this.staffId);
+              if(response){
+                return this.$router.push('/staff-list')
+
+              }else{
+                return this.$router.push(`/staffs/edit/${this.staffId}`)
+
+              }
+
+            }
+            catch(error){
+              console.log(error)
+
+            }
         },
         clear () {
           this.name = ''
@@ -124,4 +169,6 @@
         },
       },
     }
+
+
   </script>
