@@ -5,7 +5,7 @@ import AdminList from '../views/AdminList.vue'
 import StaffList from '../views/StaffList.vue'
 import AddStaff from '../views/AddStaff.vue'
 import EditStaff from '../views/EditStaff.vue'
-import ViewStaff from '../views/ViewStaff.vue'
+
 
 Vue.use(VueRouter)
 
@@ -39,12 +39,7 @@ const routes = [
   
     component: EditStaff
   },
-  {
-    path: '/staffs/view/:id',
-    name: 'viewStaff',
-  
-    component: ViewStaff
-  }
+ 
 ]
 
 const router = new VueRouter({

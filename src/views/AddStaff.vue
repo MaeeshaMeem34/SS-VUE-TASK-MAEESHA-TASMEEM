@@ -13,7 +13,7 @@
             rules="required|max:10"
           >
             <v-text-field
-              v-model="name"
+              v-model="staff.name"
               :counter="10"
               :error-messages="errors"
               label="Name"
@@ -22,18 +22,18 @@
           </validation-provider>
           <validation-provider
             v-slot="{ errors }"
-            name="phoneNumber"
+            name="mobile"
             :rules="{
               required: true,
               digits: 7,
-              regex: '^(71|72|74|76|81|82|84|85|86|87|88|89)\\d{5}$'
+              
             }"
           >
             <v-text-field
-              v-model="phoneNumber"
+              v-model="staff.mobile"
               :counter="7"
               :error-messages="errors"
-              label="Phone Number"
+              label="Mobile"
               required
             ></v-text-field>
           </validation-provider>
@@ -43,7 +43,7 @@
             rules="required|email"
           >
             <v-text-field
-              v-model="email"
+              v-model="staff.email"
               :error-messages="errors"
               label="E-mail"
               required
@@ -71,6 +71,7 @@
   <script>
       import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
       import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+import { staffInfoService } from '@/services/staffInfoService'
     
       setInteractionMode('eager')
     
@@ -105,19 +106,41 @@
           ValidationObserver,
         },
         data: () => ({
+          staff:{
           name: '',
-          phoneNumber: '',
+          mobile: '',
           email: '',
+
+          }
+         
          
         }),
+        created: async function(){
+
+        },
     
         methods: {
-          submit () {
+          async submit () {
             this.$refs.observer.validate()
+            try{
+              let response= await staffInfoService.addStaff(this.staff);
+              if(response){
+                return this.$router.push('/staff-list')
+
+              }else{
+                return this.$router.push('/staffs/add')
+
+              }
+
+            }
+            catch(error){
+              console.log(error)
+
+            }
           },
           clear () {
             this.name = ''
-            this.phoneNumber = ''
+            this.mobile = ''
             this.email = ''
            
             this.$refs.observer.reset()
