@@ -3,18 +3,9 @@
     <v-navigation-drawer
     v-model="drawer"
     app>
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Application
-          </v-list-item-title>
-          <v-list-item-subtitle>
-          
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+     
 
-      <v-divider></v-divider>
+
 
       <v-list
         dense
@@ -45,7 +36,7 @@
       dark
     
       src="https://picsum.photos/1920/1080?random"
-      prominent
+    
     >
       <template v-slot:img="{ props }">
         <v-img
@@ -56,7 +47,7 @@
 
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title class="mb-5"> Staff Management System </v-toolbar-title>
+      <v-toolbar-title > Staff Management System </v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -76,7 +67,7 @@
     <v-main>
       <!--  -->
 
-      <h1 class="pa-6"> Welcome to our Website </h1>
+      
       <router-view></router-view>
     </v-main>
   </v-app>
@@ -85,18 +76,20 @@
 <script>
   import { mdiAccountBoxMultiple } from '@mdi/js';
   import { mdiAccountStar } from '@mdi/js';
+
   
   export default {
-    name: 'App',
-    data: () => ({ 
-      drawer: null,
-      items: [
-          { title: 'Dashboard', icon: 'mdi-view-dashboard', to:"/" },
-          { title: 'View Staff List', icon: mdiAccountBoxMultiple, to:"/staff-list" },
-          { title: 'View Admin List', icon: mdiAccountStar, to:"/admin-list" },
+    name: "App",
+    data: () => ({
+        drawer: null,
+        items: [
+            { title: "Dashboard", icon: "mdi-view-dashboard", to: "/" },
+            { title: "View Staff List", icon: mdiAccountBoxMultiple, to: "/staff-list" },
+            { title: "View Admin List", icon: mdiAccountStar, to: "/admin-list" },
         ],
-   }),
-  }
+    }),
+ 
+}
 </script>
 
 

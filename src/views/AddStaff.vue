@@ -10,11 +10,11 @@
           <validation-provider
             v-slot="{ errors }"
             name="Name"
-            rules="required|max:10"
+            rules="required|max:20"
           >
             <v-text-field
               v-model="staff.name"
-              :counter="10"
+              :counter="20"
               :error-messages="errors"
               label="Name"
               required

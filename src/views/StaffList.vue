@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <h1>This is staff list</h1>
+       
         <v-btn
       
       color="blue-grey"
@@ -9,12 +9,7 @@
       to="/staffs/add"
     >
       Add New
-      <v-icon
-        right
-        dark
-      >
-     
-      </v-icon>
+
     </v-btn>
 
     <v-container>
